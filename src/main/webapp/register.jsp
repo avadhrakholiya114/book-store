@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,28 +23,41 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="text-center">Register Page</h4>
-                            <form>
+                            <c:if test="${not empty succMSG}">
+                                <p class="text-center text-success">${succMSG}</p>
+                               
+                                <c:remove var="succMSG" scope="session" />
+
+                            </c:if>
+                            <c:if test="${not empty failed}">
+                                <p class="text-center text-danger">${failed}</p>
+                                <c:remove var="failed" scope="session" />
+                            </c:if>
+
+                            <form action="register"  method="post">
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Enter Full Name* </label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    
+                                    <label for="fullName" class="form-label">Enter Full Name*</label>
+                                    <input type="text" class="form-control" id="fullName" name="fullName" aria-describedby="emailHelp">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Email address*</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    
+                                    <label for="email" class="form-label">Email address*</label>
+                                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Phone Number* </label>
-                                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    
+                                    <label for="phoneNumber" class="form-label">Phone Number*</label>
+                                    <input type="number" class="form-control" id="phoneNumber" name="phoneNumber" aria-describedby="emailHelp">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">Password*</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                    <label for="password" class="form-label">Password*</label>
+                                    <input type="password" class="form-control" id="password" name="password">
                                 </div>
-                               <button type="submit" class="btn btn-primary">Register</button>
-                               <div class="container text-center mt-4">
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="check">
+                                    <label class="form-check-label" for="exampleCheck1">Terms and Conditions</label>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Register</button>
+                                <div class="container text-center mt-4">
                                     <p class="mb-0 text-secondary">Already have an account? <a href="login.jsp" class="">Login</a></p>
                                 </div>
                             </form>

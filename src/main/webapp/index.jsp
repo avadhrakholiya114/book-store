@@ -3,7 +3,8 @@
     Created on : 03-Feb-2024, 10:18:33 am
     Author     : ADMIN
 --%>
-
+<%@page import="java.sql.Connection"%>
+<%@page import="com.DB.DBconnect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -30,7 +31,8 @@
         <div class="container-fluid back-img">
             <h2 class="text-danger text-center">Ebook Mangment System</h2>
         </div>
-
+            
+       
         
         <!--recent book-->
         <div class="container" >
