@@ -45,7 +45,7 @@ public class RegisterServlet extends HttpServlet {
                 UserDAOimpl dao = new UserDAOimpl(DBconnect.getConn());
                 boolean f = dao.userRegister(user);
 //            System.out.println(f);
-
+        //error message
                 if (f) {
 //                System.out.println("inserted");
                     session.setAttribute("succMSG", "Registration Successfully");
