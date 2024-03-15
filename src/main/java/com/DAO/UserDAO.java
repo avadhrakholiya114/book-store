@@ -9,7 +9,11 @@ package com.DAO;
  * @author ADMIN
  */
 import com.entity.User;
+
 public interface UserDAO {
+
     public boolean userRegister(User u);
-    
+
+    public User login(String email, String password);
+
 }

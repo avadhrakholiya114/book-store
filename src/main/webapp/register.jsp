@@ -23,12 +23,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="text-center">Register Page</h4>
-                            <c:if test="${not empty succMSG}">
-                                <p class="text-center text-success">${succMSG}</p>
-                               
-                                <c:remove var="succMSG" scope="session" />
-
-                            </c:if>
+                            
                             <c:if test="${not empty failed}">
                                 <p class="text-center text-danger">${failed}</p>
                                 <c:remove var="failed" scope="session" />

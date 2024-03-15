@@ -31,10 +31,10 @@ public class UserDAOimpl implements UserDAO {
             pstmt.setString(3, u.getPhnNo());
             pstmt.setString(4, u.getPassword());
             int rowsAffected = pstmt.executeUpdate();
-             if (rowsAffected > 0) {
-                f = true; 
+            if (rowsAffected > 0) {
+                f = true;
             }
-             pstmt.close();
+            pstmt.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,4 +43,35 @@ public class UserDAOimpl implements UserDAO {
         return f;
     }
 
+    @Override
+    public User login(String email, String password) {
+        User us = null;
+        try {
+            String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+            pstmt.setString(2, password);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+
+                us = new User();
+                us.setId(rs.getInt(1));
+                us.setName(rs.getString(2));
+                us.setEmail(rs.getString(3));
+                us.setPassword(rs.getString(5));
+                us.setPhnNo(rs.getString(4));
+                us.setAddress(rs.getString(6));
+                us.setCity(rs.getString(8));
+                us.setLandmark(rs.getString(7));
+                us.setState(rs.getString(9));
+                us.setPincpde(rs.getString(10));
+
+            }
+            rs.close();
+            pstmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return us;
+    }
 }
