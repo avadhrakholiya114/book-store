@@ -141,5 +141,212 @@ public class BookDaoImp implements BookDao {
 
         return false;
     }
-}
 
+    @Override
+    public List<BookDtls> geNewBook() {
+        List<BookDtls> list = new ArrayList<BookDtls>();
+        BookDtls b = null;
+        try {
+
+            String sql = "SELECT * FROM book_detail  WHERE catagory = ? and status=? order by book_id desc";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "new");
+            ps.setString(2, "active");
+            ResultSet rs = ps.executeQuery();
+            int i = 1;
+            while (rs.next() && i <= 4) {
+                b = new BookDtls(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                );
+                list.add(b);
+                i++;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public List<BookDtls> geRecenentBook() {
+        List<BookDtls> list = new ArrayList<BookDtls>();
+        BookDtls b = null;
+        try {
+
+            String sql = "SELECT * FROM book_detail  WHERE  status=? order by book_id desc";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "active");
+            ResultSet rs = ps.executeQuery();
+            int i = 1;
+            while (rs.next() && i <= 4) {
+                b = new BookDtls(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                );
+                list.add(b);
+                i++;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<BookDtls> geOldBook() {
+        List<BookDtls> list = new ArrayList<BookDtls>();
+        BookDtls b = null;
+        try {
+
+            String sql = "SELECT * FROM book_detail  WHERE catagory = ? and status=? order by book_id desc";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "old");
+            ps.setString(2, "active");
+            ResultSet rs = ps.executeQuery();
+            int i = 1;
+            while (rs.next() && i <= 4) {
+                b = new BookDtls(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                );
+                list.add(b);
+                i++;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<BookDtls> getAllRecenentBook() {
+
+        List<BookDtls> list = new ArrayList<BookDtls>();
+        BookDtls b = null;
+        try {
+
+            String sql = "SELECT * FROM book_detail  WHERE  status=? order by book_id desc";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "active");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                b = new BookDtls(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                );
+                list.add(b);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<BookDtls> getAllNewBook() {
+         List<BookDtls> list = new ArrayList<BookDtls>();
+        BookDtls b = null;
+        try {
+
+            String sql = "SELECT * FROM book_detail  WHERE catagory = ? and status=? order by book_id desc";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "new");
+            ps.setString(2, "active");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                b = new BookDtls(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                );
+                list.add(b);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<BookDtls> getAllOldBook() {
+        List<BookDtls> list = new ArrayList<BookDtls>();
+        BookDtls b = null;
+        try {
+
+            String sql = "SELECT * FROM book_detail  WHERE catagory = ? and status=? order by book_id desc";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "old");
+            ps.setString(2, "active");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                b = new BookDtls(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                );
+                list.add(b);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+}
