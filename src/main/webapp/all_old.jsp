@@ -41,7 +41,7 @@
                                             <a href="url" class="btn btn-danger btn-sm"><i class="fa-solid fa-cart-shopping"></i>Add Cart</a>
                                         </div>
                                         <div class="col-sm-4">
-                                            <a href="url" class="btn btn-success btn-sm">View </a>
+                                            <a href="view.jsp?bid=<%= b.getBookId()%>" class="btn btn-success btn-sm">View </a>
                                         </div>
                                         <div class="col-sm-4">
                                             <a href="url" class="btn btn-danger btn-sm"><%= b.getPrice()%> <i class="fas fa-rupee-sign"></i></a>
