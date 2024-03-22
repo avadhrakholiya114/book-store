@@ -9,6 +9,7 @@
 <%@page import="com.DB.DBconnect"%>
 <%@page import="com.entity.BookDtls"%>
 <%@page import="com.DAO.BookDaoImp"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -37,9 +38,7 @@
                                     <p><%= b.getAuthor()%></p>
                                     <p>Catagories : <%= b.getBookCategory()%></p>
                                     <div class="row">
-                                        <div class="col-sm-4">
-                                            <a href="url" class="btn btn-danger btn-sm"><i class="fa-solid fa-cart-shopping"></i>Add Cart</a>
-                                        </div>
+                                       
                                         <div class="col-sm-4">
                                             <a href="view.jsp?bid=<%= b.getBookId()%>" class="btn btn-success btn-sm">View </a>
                                         </div>

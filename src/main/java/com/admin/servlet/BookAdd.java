@@ -27,13 +27,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @MultipartConfig
 public class BookAdd extends HttpServlet {
 
-    private static final AtomicInteger idGenerator = new AtomicInteger(0);
-
-   
-    private int generateUniqueId() {
-        return idGenerator.incrementAndGet();
-    }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         try {
@@ -44,9 +38,8 @@ public class BookAdd extends HttpServlet {
             String status = request.getParameter("status");
             Part filePart = request.getPart("photo");
             String fileName = filePart.getSubmittedFileName();
-            int bookId = generateUniqueId();
-            System.out.print(bookId);
-            BookDtls b = new BookDtls(bookId, bookName, authorName, price, bookType, status, fileName, "admin");
+       
+            BookDtls b = new BookDtls(0, bookName, authorName, price, bookType, status, fileName, "admin");
 
             BookDaoImp dao = new BookDaoImp(DBconnect.getConn());
 

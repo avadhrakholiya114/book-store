@@ -3,6 +3,7 @@
     Created on : 03-Feb-2024, 10:18:33 am
     Author     : ADMIN
 --%>
+<%@page import="com.entity.User"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="com.DB.DBconnect"%>
@@ -18,7 +19,7 @@
         <%@include file="all_component/allCss.jsp" %>
         <style type="text/css">
             .back-img{
-                background: url("img/book.jpg");
+                background: url("book/book.jpg");
                 height: 50vh;
                 width: 100%;
                 background-repeat: no-repeat;
@@ -30,6 +31,11 @@
         </style>
     </head>
     <body style="background-color:#f7f7f7;">
+
+
+        <%
+            User u = (User) session.getAttribute("userObj");
+        %>
 
         <%@include file="all_component/navbar.jsp" %>
         <div class="container-fluid back-img">
@@ -50,7 +56,7 @@
                 <div class="col-md-3">
                     <div class="card crd-do"> 
                         <div class="card-body text-center">
-                            <img src="img/<%= b.getPhotoName()%>" alt="alt" style="width:150px;height: 200px" class="img-thumblin"/>
+                            <img src="book/<%= b.getPhotoName()%>" alt="alt" style="width:150px;height: 200px" class="img-thumblin"/>
 
                             <p><%= b.getBookName()%></p>
                             <p><%= b.getAuthor()%></p>
@@ -74,9 +80,23 @@
                             %>
                             <p>Catagories : <%= b.getBookCategory()%></p>
                             <div class="row">
+
                                 <div class="col-sm-4">
-                                    <a href="url" class="btn btn-danger btn-sm"><i class="fa-solid fa-cart-shopping"></i>Add Cart</a>
+                                    <%
+
+                                        if (u == null) {
+
+                                    %>
+                                    <a href="login.jsp" class="btn btn-danger btn-sm">Add Cart</a>
+                                    <%} else {
+                                    %>
+                                    <a href="cart?bid=<%= b.getBookId()%>&&uid=<%= u.getId()%>" class="btn btn-danger btn-sm ">Add Cart</a>
+                                    <%
+                                        }
+                                    %>
+
                                 </div>
+
                                 <div class="col-sm-4">
                                     <a href="view.jsp?bid=<%= b.getBookId()%>" class="btn btn-success btn-sm">View </a>
                                 </div>
@@ -117,14 +137,26 @@
                 <div class="col-md-3">
                     <div class="card crd-do"> 
                         <div class="card-body text-center">
-                            <img src="img/<%= b.getPhotoName()%>" alt="alt" style="width:150px;height: 200px" class="img-thumblin"/>
+                            <img src="book/<%= b.getPhotoName()%>" alt="alt" style="width:150px;height: 200px" class="img-thumblin"/>
 
                             <p><%= b.getBookName()%></p>
                             <p><%= b.getAuthor()%></p>
                             <p>Catagories : <%= b.getBookCategory()%></p>
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <a href="url" class="btn btn-danger btn-sm"><i class="fa-solid fa-cart-shopping"></i>Add Cart</a>
+                                    <%
+
+                                        if (u == null) {
+
+                                    %>
+                                    <a href="login.jsp" class="btn btn-danger btn-sm">Add Cart</a>
+                                    <%} else {
+                                    %>
+                                    <a href="cart?bid=<%= b.getBookId()%>&&uid=<%= u.getId()%>" class="btn btn-danger btn-sm ">Add Cart</a>
+                                    <%
+                                        }
+                                    %>
+
                                 </div>
                                 <div class="col-sm-4">
                                     <a href="view.jsp?bid=<%= b.getBookId()%>" class="btn btn-success btn-sm">View </a>
@@ -163,15 +195,13 @@
                 <div class="col-md-3">
                     <div class="card crd-do"> 
                         <div class="card-body text-center">
-                            <img src="img/<%= b.getPhotoName()%>" alt="alt" style="width:150px;height: 200px" class="img-thumblin"/>
+                            <img src="book/<%= b.getPhotoName()%>" alt="alt" style="width:150px;height: 200px" class="img-thumblin"/>
 
                             <p><%= b.getBookName()%></p>
                             <p><%= b.getAuthor()%></p>
                             <p>Catagories : <%= b.getBookCategory()%></p>
                             <div class="row">
-                                <div class="col-sm-4">
-                                    <a href="url" class="btn btn-danger btn-sm"><i class="fa-solid fa-cart-shopping"></i>Add Cart</a>
-                                </div>
+                                
                                 <div class="col-sm-4">
                                     <a href="view.jsp?bid=<%= b.getBookId()%>" class="btn btn-success btn-sm">View </a>
                                 </div>
