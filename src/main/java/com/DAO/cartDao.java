@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package com.DAO;
+import com.entity.BookDtls;
 import com.entity.cart;
+import java.util.List;
 
 /**
  *
@@ -12,4 +14,9 @@ import com.entity.cart;
 public interface cartDao {
     
     public  boolean addCart(cart c);
+    
+    public List<cart> getBookbyUser(int userid);
+    
+    public boolean deleteBook(int bid,int uid);
+    
 }

@@ -42,7 +42,7 @@ public class login extends HttpServlet {
                 if (us != null) {
                     session.setAttribute("userObj", us);
 
-                    resp.sendRedirect("home.jsp");
+                    resp.sendRedirect("index.jsp");
                 } else {
                     session.setAttribute("failed", "invalid credential");
                     resp.sendRedirect("login.jsp");
