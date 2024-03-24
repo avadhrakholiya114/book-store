@@ -41,7 +41,7 @@
         <div class="container">
 
             <div class="row p-5">   
-                <div class="col-md-6">
+                <div class="col-md-4">
 
                     <a href="sell_book.jsp">  
                         <div class="card">
@@ -55,8 +55,23 @@
 
                     </a>
                 </div>
+                
+                 <div class="col-md-4">
 
-                <div class="col-md-6">
+                    <a href="old_book.jsp">  
+                        <div class="card">
+
+                            <div class="card-body text-center">
+                                <div class="text-primary"><i class="fas fa-edit fa-3x"></i></div>
+
+                                <h3>Old Book</h3>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+
+                <div class="col-md-4">
 
                     <a href="edit_profile.jsp">  
                         <div class="card">

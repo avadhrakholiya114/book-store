@@ -36,5 +36,8 @@ public interface BookDao {
     public List<BookDtls> getAllRecenentBook();
 
     public List<BookDtls> getAllOldBook();
+    
+     public List<BookDtls> getOldBook(String email,String cat);
 
+     public boolean deleteOldBook(String email,String cat,int bid);
 }

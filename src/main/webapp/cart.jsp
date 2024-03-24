@@ -47,7 +47,7 @@
 
                             </c:if>
                             <c:if test="${not empty failed}">
-                                <div class="alert alert-success" role="alert">${failed}</div>
+                                <div class="alert alert-danger" role="alert">${failed}</div>
 
                                 <c:remove var="failed" scope="session" />
 
@@ -78,7 +78,7 @@
                                         <td><%= c.getAuthor()%></td>
                                         <td><%= c.getPrice()%></td>
                                         <td>
-                                            <a href="removebook?bid=<%= c.getBId()%>&&uid=<%= c.getUId()%>" class="btn btn-danger">Remove</a>
+                                            <a href="removebook?bid=<%= c.getBId()%>&&uid=<%= c.getUId()%>&&cid=<%= c.getCId() %>" class="btn btn-danger">Remove</a>
                                         </td>
                                     </tr>
                                     <%

@@ -77,13 +77,14 @@ public class cartDaoimpl implements cartDao {
     }
 
     @Override
-    public boolean deleteBook(int bid,int uid) {
+    public boolean deleteBook(int bid,int uid,int cid) {
         boolean success = false;
         try {
-            String sql = "DELETE FROM cart WHERE bid = ? and uid=?";
+            String sql = "DELETE FROM cart WHERE bid = ? and uid=? and cid=?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, bid);
             pstmt.setInt(2, uid);
+            pstmt.setInt(3, cid);
             int rows = pstmt.executeUpdate();
 
             if (rows ==1 ) {

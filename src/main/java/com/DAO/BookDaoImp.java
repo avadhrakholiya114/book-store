@@ -282,7 +282,7 @@ public class BookDaoImp implements BookDao {
 
     @Override
     public List<BookDtls> getAllNewBook() {
-         List<BookDtls> list = new ArrayList<BookDtls>();
+        List<BookDtls> list = new ArrayList<BookDtls>();
         BookDtls b = null;
         try {
 
@@ -347,6 +347,52 @@ public class BookDaoImp implements BookDao {
         }
 
         return list;
+    }
+
+    @Override
+    public List<BookDtls> getOldBook(String email, String cat) {
+        List<BookDtls> list = new ArrayList<BookDtls>();
+        BookDtls b = null;
+        try {
+            String sql = "SELECT * FROM book_detail WHERE email = ? AND catagory = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, cat);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                b = new BookDtls(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)
+                );
+                list.add(b);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public boolean deleteOldBook(String email, String cat, int bid) {
+        String query = "DELETE FROM book_detail WHERE email = ? AND catagory = ? and book_id=?";
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, email);
+            ps.setString(2, cat);
+            ps.setInt(3, bid);
+          
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected == 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }

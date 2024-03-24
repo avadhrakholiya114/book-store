@@ -26,15 +26,16 @@ public class removebook extends HttpServlet {
        
         int bid = Integer.parseInt(req.getParameter("bid"));
         int uid = Integer.parseInt(req.getParameter("uid"));
+        int cid = Integer.parseInt(req.getParameter("cid"));
         cartDaoimpl dao = new cartDaoimpl(DBconnect.getConn());
-        boolean f = dao.deleteBook(bid, uid);
+        boolean f = dao.deleteBook(bid, uid,cid);
         HttpSession session = req.getSession();
         if (f) {
             session.setAttribute("success", "book removed successfully from the cart");
             resp.sendRedirect("cart.jsp");
 
         } else {
-            session.setAttribute("failed", "book removed successfully from the cart");
+            session.setAttribute("failed", "something wronng on server");
             resp.sendRedirect("cart.jsp");
 
         }

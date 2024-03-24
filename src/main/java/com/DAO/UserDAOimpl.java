@@ -74,4 +74,49 @@ public class UserDAOimpl implements UserDAO {
         }
         return us;
     }
+
+    @Override
+    public boolean checkPass(int id, String ps) {
+        boolean f = false;
+        try {
+            String sql = "SELECT *  FROM user WHERE id = ? and password=?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.setString(2, ps);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                f = true;
+            }
+            rs.close();
+            pstmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return f;
+    }
+
+    @Override
+    public boolean updatePro(User u) {
+        boolean f = false;
+        try {
+            String sql = "UPDATE user SET name=?, email=?, phnno=?  WHERE id=?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, u.getName());
+            pstmt.setString(2, u.getEmail());
+            pstmt.setString(3, u.getPhnNo());
+            pstmt.setInt(4, u.getId());
+            
+           
+            
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected ==1 ) {
+                f = true;
+            }
+            pstmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return f;
+    }
+
 }
