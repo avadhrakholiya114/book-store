@@ -81,7 +81,7 @@
                 </li>
             </ul>
             <form class="d-flex">
-                <button class="btn btn-light my-2 my-sm-0" type="submit"><i class="fa-solid fa-gear"></i>Setting</button>
+                <a href="setting.jsp" class="btn btn-light my-2 my-sm-0" type="submit"><i class="fa-solid fa-gear"></i>Setting</a>
                 <button class="btn btn-light my-2 my-sm-0 ms-1" type="submit"><i class="fa-solid fa-phone"></i>Contact-us</button>
             </form>
         </div>
