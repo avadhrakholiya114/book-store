@@ -17,7 +17,8 @@ public class update {
     private String bookCategory;
     private String status;
 
-    public update(String bookName, String author, String price, String status) {
+    public update(int bookId,String bookName, String author, String price, String status) {
+        this.bookId=bookId;
         this.bookName = bookName;
         this.author = author;
         this.price = price;

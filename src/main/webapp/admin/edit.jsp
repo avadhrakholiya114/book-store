@@ -19,24 +19,22 @@
     </head>
     <body>
         <%@include file="navbar.jsp" %>
-        
+
         <div class="container">
             <div class="row">
                 <div class="col-md-4 offset-md-4 mt-3">
                     <div class="card">
-                          <div class="card-body">
-                               
-                            <%
-//                                int id = Integer.parseInt(request.getParameter(2));
+                        <div class="card-body">
+
+                            <%                               
+                                int id = Integer.parseInt(request.getParameter("id"));
                                 BookDaoImp dao = new BookDaoImp(DBconnect.getConn());
+                                BookDtls b = dao.getBook(id);
 
-                                BookDtls b = dao.getBook(2);
-
-                                
                                 if (b != null) {
-                            %>  
-                            <form action="../edit" method="post" enctype="multipart/form-data">
-                                
+                            %> 
+                            <form action="../edit" method="post" >
+                                 <input type="hidden" name="id" value="<%= b.getBookId()%>" >
                                 <div class="mb-3">
                                     <label for="bookName" class="form-label">Book Name*</label>
                                     <input type="text" class="form-control" value="<%= b.getBookName()%>" id="bookName" name="bookName" aria-describedby="bookNameHelp">

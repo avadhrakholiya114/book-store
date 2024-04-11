@@ -15,6 +15,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page isELIgnored="false" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -78,7 +79,7 @@
                                         <td><%= c.getAuthor()%></td>
                                         <td><%= c.getPrice()%></td>
                                         <td>
-                                            <a href="removebook?bid=<%= c.getBId()%>&&uid=<%= c.getUId()%>&&cid=<%= c.getCId() %>" class="btn btn-danger">Remove</a>
+                                            <a href="removebook?bid=<%= c.getBId()%>&&uid=<%= c.getUId()%>&&cid=<%= c.getCId()%>" class="btn btn-danger">Remove</a>
                                         </td>
                                     </tr>
                                     <%
@@ -102,55 +103,61 @@
 
                 <div class="col-md-6">
                     <div class="card">
+                       
                         <div class="card-body">
                             <h3 class="text-center text-success">Your Details for Order</h3>
-                            <form>
+                              <c:if test="${not empty errorMsg}">
+                            <p class="text-center text-danger">${errorMsg}</p>
+                            <c:remove var="errorMsg" scope="session" />
+                        </c:if>
+                            <form method="post" action="order">
+                                <input type="hidden" value="<%= u.getId() %>" name="id">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label for="inputName" class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="inputName" value="<%= u.getName()%>" readonly>
+                                        <input type="text" class="form-control" id="inputName" name="name" value="<%= u.getName()%>" >
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="inputEmail" value="<%= u.getEmail()%>" readonly>
+                                        <input type="email" class="form-control" id="inputEmail" name="email" value="<%= u.getEmail()%>" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label for="inputPhoneNumber" class="form-label">Phone Number</label>
-                                        <input type="text" class="form-control" id="inputPhoneNumber" value="<%= u.getPhnNo()%>" readonly>
+                                        <input type="text" class="form-control" id="inputPhoneNumber" name="phone" value="<%= u.getPhnNo()%>" >
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputAddress" class="form-label">Address</label>
-                                        <input type="text" class="form-control" id="inputAddress" value="<%= u.getAddress()%>" readonly>
+                                        <input type="text" class="form-control" id="inputAddress" name="address" value="<%= u.getAddress()%>" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label for="inputLandmark" class="form-label">Landmark</label>
-                                        <input type="text" class="form-control" id="inputLandmark" value="<%= u.getLandmark()%>" readonly>
+                                        <input type="text" class="form-control" id="inputLandmark" name="landmark" value="<%= u.getLandmark()%>" >
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputCity" class="form-label">City</label>
-                                        <input type="text" class="form-control" id="inputCity" value="<%= u.getCity()%>" readonly>
+                                        <input type="text" class="form-control" id="inputCity" name="city" value="<%= u.getCity()%>" >
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label for="inputState" class="form-label">State</label>
-                                        <input type="text" class="form-control" id="inputState" value="<%= u.getState()%>" readonly>
+                                        <input type="text" class="form-control" id="inputState" name="state" value="<%= u.getState()%>" >
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputZip" class="form-label">Zip</label>
-                                        <input type="text" class="form-control" id="inputZip" value="<%= u.getPincpde()%>" readonly>
+                                        <input type="text" class="form-control" id="inputZip" name="zip" value="<%= u.getPincpde()%>" >
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Payment Mode</label>
-                                    <select class="form-control">
-                                        <option>--Select--</option>
-                                        <option>Cash On Delivery</option>
+                                    <select class="form-control" name="paymentMode" required>
+                                        <option value="noselect">--Select--</option>
+                                        <option value="cod">Cash On Delivery</option>
                                     </select>
                                 </div>
 
@@ -159,6 +166,8 @@
                                     <a href="index.jsp" class="btn btn-success">Continue Shopping</a>
                                 </div>
                             </form>
+
+
                         </div>
                     </div>
                 </div>

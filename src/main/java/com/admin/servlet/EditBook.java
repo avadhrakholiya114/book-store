@@ -21,8 +21,10 @@ public class EditBook extends HttpServlet {
             String authorName = req.getParameter("authorName");
             String price = req.getParameter("price");
             String status = req.getParameter("status");
-            
-            update book = new update(bookName, authorName, price, status);
+           
+            int id = Integer.parseInt(req.getParameter("id"));
+
+            update book = new update(id, bookName, authorName, price, status);
 
             BookDaoImp dao = new BookDaoImp(DBconnect.getConn());
             boolean success = dao.updateBook(book);
@@ -33,8 +35,8 @@ public class EditBook extends HttpServlet {
                 resp.sendRedirect("admin/all_book.jsp");
             } else {
                 session.setAttribute("errorMsg", "Failed to update book");
-                
-                resp.sendRedirect("admin/all_book.jsp"); 
+
+                resp.sendRedirect("admin/all_book.jsp");
             }
 
         } catch (Exception e) {

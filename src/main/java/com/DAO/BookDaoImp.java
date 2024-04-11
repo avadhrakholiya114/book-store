@@ -108,24 +108,25 @@ public class BookDaoImp implements BookDao {
 
     @Override
     public boolean updateBook(update b) {
-        boolean success = false;
-        String sql = "UPDATE book_detail SET b_name=?, author=?, price=?, status=? WHERE book_id=?";
-
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        boolean f = false;
+        try {
+            String sql = "UPDATE book_detail SET b_name=?, author=?, price=?, status=? WHERE book_id=?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, b.getBookName());
             pstmt.setString(2, b.getAuthor());
             pstmt.setString(3, b.getPrice());
             pstmt.setString(4, b.getStatus());
             pstmt.setInt(5, b.getBookId());
 
-            int rowsUpdated = pstmt.executeUpdate();
-            if (rowsUpdated == 1) {
-                success = true;
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected == 1) {
+                f = true;
             }
+            pstmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return success;
+        return f;
     }
 
     @Override
@@ -386,7 +387,7 @@ public class BookDaoImp implements BookDao {
             ps.setString(1, email);
             ps.setString(2, cat);
             ps.setInt(3, bid);
-          
+
             int rowsAffected = ps.executeUpdate();
             return rowsAffected == 1;
         } catch (SQLException e) {

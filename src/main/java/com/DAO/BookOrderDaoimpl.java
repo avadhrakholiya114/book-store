@@ -3,21 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package com.DAO;
-import com.entity.BookDtls;
-import com.entity.cart;
+
+import com.entity.bookOrder;
 import java.util.List;
 
 /**
  *
  * @author ADMIN
  */
-public interface cartDao {
+public interface BookOrderDaoimpl {
     
-    public  boolean addCart(cart c);
+    public boolean saveOrder(List<bookOrder> b);
     
-    public List<cart> getBookbyUser(int userid);
-    
-    public boolean deleteBook(int bid,int uid,int cid);
-      
     
 }
