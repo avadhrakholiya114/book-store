@@ -1,9 +1,16 @@
 <%-- 
     Document   : all_book
-    Created on : 15-Mar-2024, 10:42:39 pm
+    Created on : 15-Mar-2024, 10:42:39 pm
     Author     : ADMIN
 --%>
 
+
+<%@page import="com.DAO.orderBookDao"%>
+<%@page import="java.util.List"%>
+<%@page import="com.DAO.BookOrderDaoimpl"%>
+<%@page import="com.entity.User"%>
+<%@page import="com.entity.bookOrder" %>
+<%@page import="com.DB.DBconnect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -32,21 +39,24 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <% 
+                       
+                        BookOrderDaoimpl dao = new orderBookDao(DBconnect.getConn());
+                        List<bookOrder> blist = dao.getallBook();
+                        for (bookOrder b : blist) { 
+                        %>
                         <tr>
-                            <td>1</td>
-                            <td>Book A</td>
-                            <td>Author X</td>
-                            <td>$20</td>
-                            <td>New</td>
-                            <td>Active</td>
-                            <td>
-                                avadj
-                            </td>
-                            <td>Active</td>
-                            <td>Active</td>
-                            
+                            <td><%= b.getOrderId() %></td>
+                            <td><%= b.getUserName() %></td>
+                            <td><%= b.getEmail() %></td>
+                            <td><%= b.getFullAdd() %></td>
+                            <td><%= b.getPhnNo() %></td>
+                            <td><%= b.getBookname() %></td>
+                            <td><%= b.getAuthor() %></td>
+                            <td><%= b.getPrice() %></td>
+                            <td><%= b.getPaymenttype() %></td>
                         </tr>
-
+                        <% } %>
                     </tbody>
                 </table>
             </div>

@@ -4,6 +4,13 @@
     Author     : ADMIN
 --%>
 
+
+<%@page import="com.DAO.orderBookDao"%>
+<%@page import="java.util.List"%>
+<%@page import="com.DAO.BookOrderDaoimpl"%>
+<%@page import="com.entity.User"%>
+<%@page import="com.entity.bookOrder" %>
+<%@page import="com.DB.DBconnect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,38 +21,36 @@
     </head>
     <body>
         <%@include file="all_component/navbar.jsp" %>
-        <div class="container">
-            <h2 class="mt-5 mb-4 text-center">Orders</h2>
+        <div class="container mt-5">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Order ID</th>
-                        <th>Name</th>
-                        <th>Book Name</th>
-                        <th>Author</th>
-                        <th>Price</th>
-                        <th>Payment Type</th>
+                        <th scope="col">Order Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Book Name</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Payment Type</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <%
+                         User u = (User) session.getAttribute("userObj");
+                        
+                        BookOrderDaoimpl dao = new orderBookDao(DBconnect.getConn());
+                        List<bookOrder> blist = dao.getBook(u.getEmail());
+                        for (bookOrder b : blist) {
+                    %>
 
-                    <tr class="text-success">
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>The Great Gatsby</td>
-                        <td>F. Scott Fitzgerald</td>
-                        <td>10.99</td>
-                        <td>Credit Card</td>
+                    <tr>
+                        <td><%= b.getOrderId()%></td>
+                        <td><%= b.getUserName()%></td>
+                        <td><%= b.getBookname()%></td>
+                        <td><%= b.getAuthor()%></td>
+                        <td><%= b.getPrice()%></td>
+                        <td><%= b.getPaymenttype()%></td>
                     </tr>
-                    <tr class="text-success">
-                        <td>2</td>
-                        <td>Jane Smith</td>
-                        <td>To Kill a Mockingbird</td>
-                        <td>Harper Lee</td>
-                        <td>8.99</td>
-                        <td>PayPal</td>
-                    </tr>
-             
+                    <% }%>
                 </tbody>
             </table>
         </div>

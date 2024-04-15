@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,8 +24,6 @@ public class orderBookDao implements BookOrderDaoimpl {
         super();
         this.conn = conn;
     }
-
-    
 
     @Override
     public boolean saveOrder(List<bookOrder> blist) {
@@ -52,11 +51,66 @@ public class orderBookDao implements BookOrderDaoimpl {
             conn.commit();
             f = true;
             conn.setAutoCommit(true);
-            
-            } catch (Exception e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return f;
+    }
+
+    public List<bookOrder> getBook(String email) {
+        List<bookOrder> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM book_order WHERE email=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                bookOrder o = new bookOrder();
+                o.setId(rs.getInt(1));
+                o.setOrderId(rs.getString(2));
+                o.setUserName(rs.getString(3));
+                o.setEmail(rs.getString(4));
+                o.setFullAdd(rs.getString(5));
+                o.setPhnNo(rs.getString(6));
+                o.setBookname(rs.getString(7));
+                o.setAuthor(rs.getString(8));
+                o.setPrice(rs.getString(9));
+                o.setPaymenttype(rs.getString(10));
+                list.add(o);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public List<bookOrder> getallBook() {
+
+        List<bookOrder> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM book_order";
+            PreparedStatement ps = conn.prepareStatement(sql);
+     
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                bookOrder o = new bookOrder();
+                o.setId(rs.getInt(1));
+                o.setOrderId(rs.getString(2));
+                o.setUserName(rs.getString(3));
+                o.setEmail(rs.getString(4));
+                o.setFullAdd(rs.getString(5));
+                o.setPhnNo(rs.getString(6));
+                o.setBookname(rs.getString(7));
+                o.setAuthor(rs.getString(8));
+                o.setPrice(rs.getString(9));
+                o.setPaymenttype(rs.getString(10));
+                list.add(o);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }

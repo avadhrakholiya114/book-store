@@ -14,6 +14,7 @@ import java.util.List;
 public interface BookOrderDaoimpl {
     
     public boolean saveOrder(List<bookOrder> b);
-    
+      public List<bookOrder> getBook(String email);
+      public List<bookOrder> getallBook();
     
 }

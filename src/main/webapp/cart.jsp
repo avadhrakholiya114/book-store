@@ -115,41 +115,41 @@
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label for="inputName" class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="inputName" name="name" value="<%= u.getName()%>" >
+                                        <input type="text" class="form-control" id="inputName" name="name" value="<%= u.getName()%>" required >
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="inputEmail" name="email" value="<%= u.getEmail()%>" >
+                                        <input type="email" class="form-control" id="inputEmail" name="email" value="<%= u.getEmail()%>" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label for="inputPhoneNumber" class="form-label">Phone Number</label>
-                                        <input type="text" class="form-control" id="inputPhoneNumber" name="phone" value="<%= u.getPhnNo()%>" >
+                                        <input type="text" class="form-control" id="inputPhoneNumber" name="phone" value="<%= u.getPhnNo()%>" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputAddress" class="form-label">Address</label>
-                                        <input type="text" class="form-control" id="inputAddress" name="address" value="<%= u.getAddress()%>" >
+                                        <input type="text" class="form-control" id="inputAddress" name="address" value="<%= u.getAddress()%>" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label for="inputLandmark" class="form-label">Landmark</label>
-                                        <input type="text" class="form-control" id="inputLandmark" name="landmark" value="<%= u.getLandmark()%>" >
+                                        <input type="text" class="form-control" id="inputLandmark" name="landmark" value="<%= u.getLandmark()%>" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputCity" class="form-label">City</label>
-                                        <input type="text" class="form-control" id="inputCity" name="city" value="<%= u.getCity()%>" >
+                                        <input type="text" class="form-control" id="inputCity" name="city" value="<%= u.getCity()%>" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label for="inputState" class="form-label">State</label>
-                                        <input type="text" class="form-control" id="inputState" name="state" value="<%= u.getState()%>" >
+                                        <input type="text" class="form-control" id="inputState" name="state" value="<%= u.getState()%>"required >
                                     </div>
                                     <div class="col-md-6">
                                         <label for="inputZip" class="form-label">Zip</label>
-                                        <input type="text" class="form-control" id="inputZip" name="zip" value="<%= u.getPincpde()%>" >
+                                        <input type="text" class="form-control" id="inputZip" name="zip" value="<%= u.getPincpde()%>"required >
                                     </div>
                                 </div>
 
